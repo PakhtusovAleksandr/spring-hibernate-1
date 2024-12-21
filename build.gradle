@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework:spring-context:6.2.1'
+    implementation 'org.springframework:spring-orm:6.2.1'
+    implementation 'org.hibernate:hibernate-core:6.6.2.Final'
+    implementation 'org.postgresql:postgresql:42.3.9'
+
+//    implementation 'com.sun.activation:javax.activation:1.2.0'
+//    implementation 'javax.xml.bind:jaxb-api:2.3.0'
+//    implementation 'com.sun.xml.bind:jaxb-core:2.3.0'
+//    implementation 'com.sun.xml.bind:jaxb-impl:2.3.0'
+
+    compileOnly 'org.projectlombok:lombok:1.18.36'
+    annotationProcessor 'org.projectlombok:lombok:1.18.36'
+
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
