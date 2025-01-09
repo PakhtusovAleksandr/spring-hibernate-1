@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div>
+    <h2>List of Accounts</h2>
+    <h3 th:text="'Accounts count: ' + ${#lists.size(allAccounts)}">Accounts count</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>LastName</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="sb : ${allAccounts}">
+                <td th:text="${{sb.id}}"></td>
+                <td th:text="${{sb.name}}"></td>
+                <td th:text="${{sb.lastName}}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>Create account</h2>
+    <form action="#" th:action="@{/accounts}" th:object="${newAccount}" method="post">
+        <input type="text" th:field="*{name}" placeholder="Name"/>
+        <input type="text" th:field="*{lastName}" placeholder="LastName"/>
+        <button>Create Account</button>
+    </form>
+</div>
+</body>
+</html>

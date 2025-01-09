@@ -18,7 +18,6 @@ import java.util.Properties;
 @Configuration
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
-@ComponentScan(value = "ru.be_prog")
 public class HibernateConfiguration {
 
     @Bean
