@@ -53,4 +53,15 @@ public class AccountDaoImpl implements AccountDao {
             session.remove(account);
         }
     }
+
+
+    @Override
+    public List<Account> findAccountByCountry(String country) {
+        TypedQuery<Account> query = sessionFactory.getCurrentSession().createQuery("SELECT account FROM Account account WHERE account.profile.country = :country", Account.class);
+        query.setParameter("country", country);
+        return query.getResultList();
+
+    }
+
+
 }

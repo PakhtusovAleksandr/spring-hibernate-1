@@ -46,4 +46,9 @@ public class AccountServiceImpl implements AccountService {
     public void deleteAllAccounts() {
         accountDao.deleteAllAccounts();
     }
+
+    @Override
+    public List<Account> findAccountByCountry(String country) {
+        return accountDao.findAccountByCountry(country);
+    }
 }

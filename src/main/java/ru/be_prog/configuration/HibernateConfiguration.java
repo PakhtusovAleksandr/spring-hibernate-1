@@ -11,6 +11,7 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import ru.be_prog.model.Account;
+import ru.be_prog.model.Profile;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -42,7 +43,7 @@ public class HibernateConfiguration {
         props.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
 
         factoryBean.setHibernateProperties(props);
-        factoryBean.setAnnotatedClasses(Account.class);
+        factoryBean.setAnnotatedClasses(Account.class, Profile.class);
         return factoryBean;
     }
 

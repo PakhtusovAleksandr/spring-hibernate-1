@@ -18,4 +18,6 @@ public interface AccountService {
     void deleteAccountById(UUID id);
 
     void deleteAllAccounts();
+
+    List<Account> findAccountByCountry(String country);
 }
