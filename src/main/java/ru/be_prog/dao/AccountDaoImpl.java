@@ -2,8 +2,8 @@ package ru.be_prog.dao;
 
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.MutationQuery;
 import ru.be_prog.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -47,7 +47,21 @@ public class AccountDaoImpl implements AccountDao {
 
     @Override
     public void deleteAllAccounts() {
-        MutationQuery query = sessionFactory.getCurrentSession().createMutationQuery("delete from Account");
-        query.executeUpdate();
+        List<Account> accounts = findAllAccounts();
+        Session session = sessionFactory.getCurrentSession();
+        for (Account account: accounts) {
+            session.remove(account);
+        }
     }
+
+
+    @Override
+    public List<Account> findAccountByCountry(String country) {
+        TypedQuery<Account> query = sessionFactory.getCurrentSession().createQuery("SELECT account FROM Account account WHERE account.profile.country = :country", Account.class);
+        query.setParameter("country", country);
+        return query.getResultList();
+
+    }
+
+
 }
