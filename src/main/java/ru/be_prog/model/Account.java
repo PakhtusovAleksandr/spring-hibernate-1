@@ -25,6 +25,10 @@ public class Account {
     private String lastName;
 
     //Связь с Profile, указываем его главным
-    @OneToOne(mappedBy = "account",cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    // каскад - выполняет действия со связ сущ, orphanRemovel -
+    // удаление сущности, если через сеттер задаем null или новый (удаление мусора)
+
+    @JoinColumn(name = "profile_id")
     private Profile profile;
 }

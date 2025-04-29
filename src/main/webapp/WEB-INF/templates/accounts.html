@@ -15,20 +15,32 @@
             <th>Id</th>
             <th>Name</th>
             <th>LastName</th>
+            <th>Profile Id</th>
+            <th>DateOfBirth</th>
+            <th>Country</th>
+            <th>About</th>
         </tr>
         </thead>
         <tbody>
-            <tr th:each="sb : ${allAccounts}">
-                <td th:text="${{sb.id}}"></td>
-                <td th:text="${{sb.name}}"></td>
-                <td th:text="${{sb.lastName}}"></td>
+            <tr th:each="account : ${allAccounts}">
+                <td th:text="${{account.id}}"></td>
+                <td th:text="${{account.name}}"></td>
+                <td th:text="${{account.lastName}}"></td>
+                <td th:text="${{account.profile.id}}"></td>
+                <td th:text="${{account.profile.dateOfBirth}}"></td>
+                <td th:text="${{account.profile.country}}"></td>
+                <td th:text="${{account.profile.about}}"></td>
             </tr>
         </tbody>
     </table>
+
     <h2>Create account</h2>
     <form action="#" th:action="@{/accounts}" th:object="${newAccount}" method="post">
         <input type="text" th:field="*{name}" placeholder="Name"/>
         <input type="text" th:field="*{lastName}" placeholder="LastName"/>
+        <input type="text" th:field="*{profile.dateOfBirth}" placeholder="DateOfBirth"/>
+        <input type="text" th:field="*{profile.country}" placeholder="Country"/>
+        <input type="text" th:field="*{profile.about}" placeholder="About"/>
         <button>Create Account</button>
     </form>
 </div>
