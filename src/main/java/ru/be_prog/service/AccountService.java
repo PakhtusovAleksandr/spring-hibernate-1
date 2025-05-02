@@ -1,23 +1,54 @@
 package ru.be_prog.service;
 
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import ru.be_prog.model.Account;
+import ru.be_prog.repository.AccountRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
-public interface AccountService {
+@Service
+@RequiredArgsConstructor
+public class AccountService {
 
-    void saveAccount(Account account);
+    private final AccountRepository accountRepository;
 
-    void updateAccount(Account account);
+    @Transactional
+    public void saveAccount(Account account) {
+        accountRepository.save(account);
+    }
 
-    Account findAccountById(UUID id);
+    @Transactional
+    public void updateAccount(Account account) {
+        accountRepository.findById(account.getId());
+        accountRepository.save(account);
+    }
 
-    List<Account> findAllAccounts();
+    @Transactional
+    public Optional<Account> findAccountById(UUID id) {
+        return accountRepository.findById(id);
+    }
 
-    void deleteAccountById(UUID id);
+    @Transactional
+    public List<Account> findAllAccounts() {
+        return accountRepository.findAll();
+    }
 
-    void deleteAllAccounts();
+    @Transactional
+    public void deleteAccountById(UUID id) {
+        accountRepository.deleteById(id);
+    }
 
-    List<Account> findAccountByCountry(String country);
+    @Transactional
+    public void deleteAllAccounts() {
+        accountRepository.deleteAll();
+    }
+
+    @Transactional
+    public List<Account> findAccountByCountry(String country) {
+        return accountRepository.findAccountByCountry(country);
+    }
 }

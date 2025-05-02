@@ -1,0 +1,21 @@
+spring:
+  spring:
+    thymeleaf:
+      prefix: file:/absolute/path/to/templates/
+      check-template-location: false
+  datasource:
+    url: jdbc:postgresql://localhost:5432/account_service
+    username: account_service
+    password: account_service
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  port: 8080
